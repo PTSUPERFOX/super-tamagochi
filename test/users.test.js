@@ -28,6 +28,7 @@ describe('API status and response', function () {
         .end(function (err, res) {
           createdId = res.body._id
           res.body.name.should.equal('Syanmil')
+
           res.should.have.status(success(res.status))
           res.body.should.be.an('object')
           done()
@@ -40,7 +41,9 @@ describe('API status and response', function () {
       chai.request(url)
         .get('/api/users/getstatus')
         .end(function (err, res) {
+
           res.body[0].name.should.equal('Syanmil')
+
           res.should.have.status(success(res.status))
           res.body.should.be.an('array')
           done()
