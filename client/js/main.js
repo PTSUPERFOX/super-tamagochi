@@ -1,53 +1,53 @@
-$(document).ready(function(){
-
+$(document).ready(function () {
+  getStatus()
 })
 
-function trainingAjax() {
+function trainingAjax () {
   let userid = localStorage.getItem('UserId')
   $.ajax({
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/train`,
-    success: function(data){
+    success: function (data) {
       getStatus()
     }
   })
 }
-function eatAjax() {
+function eatAjax () {
   let userid = localStorage.getItem('UserId')
   $.ajax({
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/eat`,
-    success: function(data){
+    success: function (data) {
       getStatus()
     }
   })
 }
-function drinkAjax() {
+function drinkAjax () {
   let userid = localStorage.getItem('UserId')
   $.ajax({
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/drink`,
-    success: function(data){
+    success: function (data) {
       getStatus()
     }
   })
 }
-function sleepAjax() {
+function sleepAjax () {
   let userid = localStorage.getItem('UserId')
   $.ajax({
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/sleep`,
-    success: function(data){
+    success: function (data) {
       getStatus()
     }
   })
 }
-function getStatus(){
+function getStatus () {
   let userid = localStorage.getItem('UserId')
   $.ajax({
     method: 'GET',
     url: `http://localhost:3000/api/users/getstatus/${userid}`,
-    success: function(data){
+    success: function (data) {
       $('#fatigue_status').val(data.fatigue)
       $('#hunger_status').val(data.hunger)
       $('#thirst_status').val(data.thirst)

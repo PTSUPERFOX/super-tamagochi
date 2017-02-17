@@ -10,10 +10,11 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Chewy|Fredoka+One|Luckiest+Guy|Modak|Paytone+One" rel="stylesheet">
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Super Tamagochi</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo paytone-one center">Super Tamagochi</a>
     </div>
   </nav>
 
@@ -23,23 +24,74 @@
 
         <!-- Avatar BOX -->
         <div class="col s4">
-          <div class="card-panel box-avatar">
-
+          <div class="card-panel box-avatar" style="padding:2px;">
+            <div class="title-box light-blue lighten-2 relative action-image">
+              <h4 class="title">Avatar</h4>
+              <img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">
+            </div>
           </div>
         </div>
 
         <!-- Name & Log BOX -->
         <div class="col s4">
           <div class="card-panel box-name">
-
+            <p style="display:inline-block;">Name: </p><h4 class="petname">John Doe</h4>
           </div>
           <div class="card-panel box-log">
+            <div class="card-panel" style="overflow:scroll; height:295px; padding-top:0px;">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Status BOX -->
         <div class="col s4">
-          <div class="card-panel box-status">
+          <div class="card-panel box-status" style="padding:2px;">
+            <div class="title-box light-blue lighten-2">
+              <h4 class="title">Status</h4>
+            </div>
+            <br>
+
+            <div class="row" style="margin-left:7px;">
+              <div class="col s4" style="font-family:'fredoka one'; font-size:20px;">
+                <b>Fatigue</b>
+              </div>
+              <div class="col s6">
+                <progress id="fatigue_status" value="100" max="100" style="margin-left:30px;"></progress>
+              </div>
+            </div>
+            <div class="row" style="margin-left:7px;">
+              <div class="col s4" style="font-family:'fredoka one'; font-size:20px;">
+                <b>Hunger</b>
+              </div>
+              <div class="col s6">
+                <progress id="hunger_status" value="100" max="100" style="margin-left:30px;"></progress>
+              </div>
+            </div>
+            <div class="row" style="margin-left:7px;">
+              <div class="col s4" style="font-family:'fredoka one'; font-size:20px;">
+                <b>Thirst</b>
+              </div>
+              <div class="col s6">
+                <progress id="thirst_status" value="100" max="100" style="margin-left:30px;"></progress>
+              </div>
+            </div>
+            <div class="row" style="margin-left:7px;">
+              <div class="col s4" style="font-family:'fredoka one'; font-size:20px;">
+                <b>Awesomeness</b>
+              </div>
+              <div class="col s6">
+                <progress id="awesomeness_status" value="100" max="100" style="margin-left:30px;"></progress>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -49,25 +101,18 @@
           <div class="card-panel box-action">
             <div class="card-panel" style="display:flex; align-items:center;">
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light blue lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/training.png" alt="" width="65px;" /></button>
+                <button id="training_button" class="btn-large waves-effect waves-light blue lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/training.png" alt="" width="65px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light teal lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/eat.png" alt="" width="80px;" /></button>
+                <button id="eat_button" class="btn-large waves-effect waves-light teal lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/eat.png" alt="" width="80px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light green lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/sleep.png" alt="" width="100px;" /></button>
+                <button id="sleep_button" class="btn-large waves-effect waves-light green lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/sleep.png" alt="" width="100px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light deep-orange lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/drink.png" alt="" width="85px;" /></button>
+                <button id="drink_button" class="btn-large waves-effect waves-light deep-orange lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/drink.png" alt="" width="85px;" /></button>
               </div>
             </div>
-          </div>
-        </div>
-
-
-        <div class="col s12 m4">
-          <div class="card-panel">
-
           </div>
         </div>
 
@@ -78,9 +123,110 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
+  <script src="js/main.js"></script>
 
   <script>
-    // Input your AJAX here! on success redirect to main.html and set the pet name
+  var stop = true;
+
+  $('#training_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+    if(stop){
+      stop = false
+      console.log(stop);
+    } else {
+      stop = true
+      console.log(stop);
+      clearInterval(stop)
+    }
+    if(currentImage === 'training_image') {
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+
+    } else {
+      $('.action-image').attr('id', 'training_image')
+      $('#training_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/training_panda.gif" class="panda_image" width="200px;" alt="">')
+
+      var stop = setInterval(function(){
+        trainingAjax()
+      }, 2000);
+
+    }
+  })
+
+  $('#eat_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+
+    // disable eat button
+    $('#eat_button').attr('disabled', true)
+
+    // After 5s enable eat button
+    setTimeout(function(){
+      $('#eat_button').prop('disabled', false)
+    }, 2000);
+
+    $('.action-image').attr('id', 'eat_image')
+    $('#eat_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/eat_panda.gif-c200" class="panda_image" width="200px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 2000);
+    eatAjax()
+  })
+
+  $('#sleep_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+
+    // disable sleep button
+    $('#sleep_button').attr('disabled', true)
+
+    // After 30s enable sleep button
+    setTimeout(function(){
+      $('#sleep_button').prop('disabled', false)
+    }, 30000);
+
+    $('.action-image').attr('id', 'sleep_image')
+    $('#sleep_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/sleep_panda.jpg" class="panda_image" width="200px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 10000);
+    sleepAjax()
+  })
+
+  $('#drink_button').click(function(e){
+    e.preventDefault()
+
+    buttonStatus()
+    drinkImage()
+    drinkAjax()
+  })
+
+  function buttonStatus() {
+
+    // disable drink button
+    $(`#drink_button`).attr('disabled', true)
+
+    // After 10s enable drink button
+    setTimeout(function(){
+      $(`#drink_button`).prop('disabled', false)
+    }, 10000);
+  }
+
+  function drinkImage() {
+    $('.action-image').attr('id', 'drink_image')
+    $('#drink_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/drink_panda.jpeg" class="panda_image_drink" width="300px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 2000);
+  }
+
   </script>
 
   </body>
