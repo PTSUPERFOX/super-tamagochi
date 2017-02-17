@@ -1,4 +1,6 @@
-$(document).ready(function () {})
+$(document).ready(function () {
+  getStatus()
+})
 
 function trainingAjax () {
   let userid = localStorage.getItem('UserId')

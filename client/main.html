@@ -123,18 +123,34 @@
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
+  <script src="js/main.js"></script>
 
   <script>
+  var stop = true;
+
   $('#training_button').click(function(e){
     e.preventDefault()
     let currentImage = $('.action-image').attr('id')
-
+    if(stop){
+      stop = false
+      console.log(stop);
+    } else {
+      stop = true
+      console.log(stop);
+      clearInterval(stop)
+    }
     if(currentImage === 'training_image') {
       $('.action-image').attr('id', 'idle_image')
       $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+
     } else {
       $('.action-image').attr('id', 'training_image')
       $('#training_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/training_panda.gif" class="panda_image" width="200px;" alt="">')
+
+      var stop = setInterval(function(){
+        trainingAjax()
+      }, 2000);
+
     }
   })
 
@@ -145,10 +161,10 @@
     // disable eat button
     $('#eat_button').attr('disabled', true)
 
-    // After 20s enable eat button
+    // After 5s enable eat button
     setTimeout(function(){
       $('#eat_button').prop('disabled', false)
-    }, 20000);
+    }, 2000);
 
     $('.action-image').attr('id', 'eat_image')
     $('#eat_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/eat_panda.gif-c200" class="panda_image" width="200px;" alt="">')
@@ -157,6 +173,7 @@
       $('.action-image').attr('id', 'idle_image')
       $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
     }, 2000);
+    eatAjax()
   })
 
   $('#sleep_button').click(function(e){
@@ -177,16 +194,19 @@
     setTimeout(function(){
       $('.action-image').attr('id', 'idle_image')
       $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
-    }, 2000);
+    }, 10000);
+    sleepAjax()
   })
 
   $('#drink_button').click(function(e){
     e.preventDefault()
+
     buttonStatus()
     drinkImage()
+    drinkAjax()
   })
 
-  function drinkStatus() {
+  function buttonStatus() {
 
     // disable drink button
     $(`#drink_button`).attr('disabled', true)
