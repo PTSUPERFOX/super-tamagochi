@@ -17,12 +17,14 @@ router.delete('/delete/:id', UsersController.remove)
 
 router.get('/:id/train', logic.training)
 
+router.put('/login', UsersController.login)
+
+router.put('/logout', UsersController.logout)
+
 router.get('/:id/eat', logic.eating)
 
 router.get('/:id/sleep', logic.sleeping)
 
 router.get('/:id/drink', logic.drinking)
-
-
 
 module.exports = router

@@ -1,4 +1,5 @@
 var UsersModel = require('../models/UsersModel.js')
+const cron = require('node-cron')
 
 module.exports = {
   create: function (req, res) {
@@ -7,7 +8,8 @@ module.exports = {
       hunger: req.body.hunger,
       thirst: req.body.thirst,
       fatigue: req.body.fatigue,
-      awesomeness: req.body.awesomeness
+      awesomeness: req.body.awesomeness,
+      logout: Date.now()
     })
 
     Users.save(function (err, Users) {
@@ -91,5 +93,46 @@ module.exports = {
       }
       return res.status(204).json()
     })
+  },
+
+  logout: function (req, res) {
+    UsersModel.findOneAndUpdate({
+      _id: req.body.id
+    }, {
+      $set: {
+        logout: Date.now()
+      }
+    }, { new: true }, function (err, data) {
+      if (err) throw error
+      else return res.json(data)
+    })
+  },
+
+  login: function (req, res) {
+    UsersModel.findOne({
+      name: req.body.name
+    }, function (err, data) {
+      let diff = Date.now() - data.logout
+      diff = Math.floor(diff / 1000 / 30)
+      var hunger = data.hunger - (diff * 5)
+      var thirst = data.thirst - (diff * 5)
+      var fatigue = data.thirst + (diff * 1)
+      UsersModel.findOneAndUpdate({
+        name: req.body.name
+      }, {
+        $set: {
+          hunger: hunger,
+          thirst: thirst,
+          fatigue: fatigue
+        }
+      }, function (err, data) {
+        if (err) throw error
+        else return res.json(data)
+      })
+    })
+  },
+
+  start: function (req, res) {
+    cron.schedule('* * * * *', function () {})
   }
 }
