@@ -4,7 +4,7 @@ const chaiHTTP = require('chai-http')
 const url = 'http://localhost:3000'
 chai.use(chaiHTTP)
 
-// ======= chai should test for /api/users =====
+// ======= test for /api/users =====
 
 function success (status) {
   let isSuccess = status >= 200 && status < 300 || status === 304
@@ -14,7 +14,7 @@ function success (status) {
 
 describe('API status and response', function () {
   let createdId
-  describe('api/users/register', function () {
+  describe('POST api/users/register', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .post('/api/users/register')
@@ -35,7 +35,7 @@ describe('API status and response', function () {
     })
   })
 
-  describe('api/users/getstatus', function () {
+  describe('GET api/users/getstatus', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .get('/api/users/getstatus')
@@ -48,7 +48,7 @@ describe('API status and response', function () {
     })
   })
 
-  describe('api/users/getstatus/:id', function () {
+  describe('GET api/users/getstatus/:id', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .get(`/api/users/getstatus/${createdId}`)
@@ -61,7 +61,7 @@ describe('API status and response', function () {
     })
   })
 
-  describe('api/users/getstatus', function () {
+  describe('PUT api/users/update', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .put(`/api/users/update/${createdId}`)
@@ -80,7 +80,7 @@ describe('API status and response', function () {
     })
   })
 
-  describe('api/users/delete/:id', function () {
+  describe('DELETE api/users/delete/:id', function () {
     it('should return 200 <= status < 300 || status === 304', function (done) {
       chai.request(url)
         .delete(`/api/users/delete/${createdId}`)
@@ -91,51 +91,51 @@ describe('API status and response', function () {
     })
   })
 
-// describe('api/users/train', function () {
-//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
-//     chai.request(url)
-//       .get('/api/users/train')
-//       .end(function (err, res) {
-//         res.should.have.status(success(res.status))
-//         res.body.should.be.an('object')
-//         done()
-//       })
-//   })
-// })
-//
-// describe('api/users/eat', function () {
-//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
-//     chai.request(url)
-//       .get('/api/users/eat')
-//       .end(function (err, res) {
-//         res.should.have.status(success(res.status))
-//         res.body.should.be.an('object')
-//         done()
-//       })
-//   })
-// })
-//
-// describe('api/users/sleep', function () {
-//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
-//     chai.request(url)
-//       .get('/api/users/sleep')
-//       .end(function (err, res) {
-//         res.should.have.status(success(res.status))
-//         res.body.should.be.an('object')
-//         done()
-//       })
-//   })
-// })
-//
-// describe('api/users/drink', function () {
-//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
-//     chai.request(url)
-//       .get('/api/users/drink')
-//       .end(function (err, res) {
-//         res.should.have.status(success(res.status))
-//         res.body.should.be.an('object')
-//         done()
-//       })
-//   })
-// })
+  describe('PUT api/users/train', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .put('/api/users/train')
+        .end(function (err, res) {
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
+  describe('PUT api/users/eat', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .put('/api/users/eat')
+        .end(function (err, res) {
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
+  describe('PUT api/users/sleep', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .put('/api/users/sleep')
+        .end(function (err, res) {
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
+  describe('PUT api/users/drink', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .put('/api/users/drink')
+        .end(function (err, res) {
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
 })
