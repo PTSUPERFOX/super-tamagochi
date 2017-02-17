@@ -32,3 +32,37 @@ body {
   display: flex;
   justify-content: center;
 }
+
+
+
+.title-box {
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  margin-left: 20px;
+}
+
+.overflow {
+  overflow: auto;
+}
+
+h3 {
+  margin: 0px;
+}
+
+.box-name p {
+  margin: 0px;
+}
+
+.panda_image {
+  position: absolute;
+  left: 25%;
+  top: 150%;
+}
+
+.relative {
+  position: relative;
+}
