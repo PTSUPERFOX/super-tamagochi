@@ -97,14 +97,14 @@ module.exports = {
 
   logout: function (req, res) {
     UsersModel.findOneAndUpdate({
-      _id: '58a6dfd3b6b34724df3e4464'
+      _id: req.body.id
     }, {
       $set: {
         logout: Date.now()
       }
     }, { new: true }, function (err, data) {
       if (err) throw error
-      else return res.json(data)
+      else res.json(data)
     })
   },
 
@@ -112,22 +112,29 @@ module.exports = {
     UsersModel.findOne({
       name: req.body.name
     }, function (err, data) {
-      let diff = Date.now() - data.logout
-      diff = Math.floor(diff / 1000 / 30)
-      var hunger = data.hunger - diff
-      var thirst = data.thirst - diff
-      var fatigue = data.thirst + diff
+      // get time difference
+      // between current login and latest logout time
+      let difflog = Date.now() - data.logout
+
+      // get time difference in miliseconds
+      let diffms = Math.floor(difflog / 1000 / 30)
+
+      // prepare new status data to be updated on the user
+      let newData = {
+        hunger: data.hunger - diffms,
+        thirst: data.thirst - diffms,
+        fatigue: data.thirst + diffms
+      }
+
+      // find specific user by name
+      // then update its status
       UsersModel.findOneAndUpdate({
         name: req.body.name
       }, {
-        $set: {
-          hunger: hunger,
-          thirst: thirst,
-          fatigue: fatigue
-        }
-      } {new: true}, function (err, data) {
+        $set: newData
+      }, {new: true}, function (err, data) {
         if (err) throw error
-        else return res.json(data)
+        else res.json(data)
       })
     })
   }
