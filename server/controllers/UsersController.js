@@ -1,6 +1,26 @@
 var UsersModel = require('../models/UsersModel.js')
 
 module.exports = {
+  create: function (req, res) {
+    var Users = new UsersModel({
+      name: req.body.name,
+      hunger: req.body.hunger,
+      thirst: req.body.thirst,
+      fatigue: req.body.fatigue,
+      awesomeness: req.body.awesomeness
+    })
+
+    Users.save(function (err, Users) {
+      if (err) {
+        return res.status(500).json({
+          message: 'Error when creating Users',
+          error: err
+        })
+      }
+      return res.status(201).json(Users)
+    })
+  },
+
   list: function (req, res) {
     UsersModel.find(function (err, Users) {
       if (err) {
@@ -28,21 +48,6 @@ module.exports = {
         })
       }
       return res.json(Users)
-    })
-  },
-
-  create: function (req, res) {
-    var Users = new UsersModel({      name: req.body.name,      hunger: req.body.hunger,      thirst: req.body.thirst,      fatigue: req.body.fatigue,      awesomeness: req.body.awesomeness
-    })
-
-    Users.save(function (err, Users) {
-      if (err) {
-        return res.status(500).json({
-          message: 'Error when creating Users',
-          error: err
-        })
-      }
-      return res.status(201).json(Users)
     })
   },
 
