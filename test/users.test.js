@@ -41,8 +41,7 @@ describe('API status and response', function () {
       chai.request(url)
         .get('/api/users/getstatus')
         .end(function (err, res) {
-
-          res.body[0].name.should.equal('Syanmil')
+          res.body[(res.body.length) - 1].name.should.equal('Syanmil')
 
           res.should.have.status(success(res.status))
           res.body.should.be.an('array')
