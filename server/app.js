@@ -10,6 +10,10 @@ var users = require('./routes/users')
 
 var app = express()
 
+// ====== Cron ======
+
+cron.schedule('* * * * *', function () {})
+
 // ====== Cors ======
 let cors = require('cors')
 app.use(cors())

@@ -97,7 +97,7 @@ module.exports = {
 
   logout: function (req, res) {
     UsersModel.findOneAndUpdate({
-      _id: req.body.id
+      _id: '58a6dfd3b6b34724df3e4464'
     }, {
       $set: {
         logout: Date.now()
@@ -114,9 +114,9 @@ module.exports = {
     }, function (err, data) {
       let diff = Date.now() - data.logout
       diff = Math.floor(diff / 1000 / 30)
-      var hunger = data.hunger - (diff * 5)
-      var thirst = data.thirst - (diff * 5)
-      var fatigue = data.thirst + (diff * 1)
+      var hunger = data.hunger - diff
+      var thirst = data.thirst - diff
+      var fatigue = data.thirst + diff
       UsersModel.findOneAndUpdate({
         name: req.body.name
       }, {
@@ -125,14 +125,10 @@ module.exports = {
           thirst: thirst,
           fatigue: fatigue
         }
-      }, function (err, data) {
+      } {new: true}, function (err, data) {
         if (err) throw error
         else return res.json(data)
       })
     })
-  },
-
-  start: function (req, res) {
-    cron.schedule('* * * * *', function () {})
   }
 }
