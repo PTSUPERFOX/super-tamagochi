@@ -3,9 +3,3 @@ body {
   background: url('../asset/img/background_login1.jpg') no-repeat center;
   background-size: cover;
 }
-
-.my-container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 100%;
-}
