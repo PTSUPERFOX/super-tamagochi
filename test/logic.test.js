@@ -54,7 +54,10 @@ function success (status) {
   else return '500 or 404'
 }
 
-describe('POST api/users/register', function () {
+describe('Check App logic modify database', function () {
+  it('expect training to be a function', function () {
+    expect(logic.training).to.be.a('function')
+  })
   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
     chai.request(url)
       .post('/api/users/register')
@@ -73,12 +76,6 @@ describe('POST api/users/register', function () {
         res.body.should.be.an('object')
         done()
       })
-  })
-})
-
-describe('Check App logic modify database', function () {
-  it('expect training to be a function', function () {
-    expect(logic.training).to.be.a('function')
   })
   it('expect training to be change all status', function (done) {
     chai.request(url)
@@ -115,6 +112,15 @@ describe('Check App logic modify database', function () {
         expect(res.body.hunger).to.be.equal(90)
         expect(res.body.thirst).to.be.equal(90)
         expect(res.body.fatigue).to.be.equal(100)
+        done()
+      })
+  })
+
+  it('should return 200 <= status < 300 || status === 304', function (done) {
+    chai.request(url)
+      .delete(`/api/users/delete/${userid}`)
+      .end(function (err, res) {
+        res.should.have.status(success(res.status))
         done()
       })
   })
