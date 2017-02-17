@@ -8,7 +8,7 @@ function trainingAjax() {
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/train`,
     success: function(data){
-      console.log(data);
+      getStatus()
     }
   })
 }
@@ -18,7 +18,7 @@ function eatAjax() {
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/eat`,
     success: function(data){
-      console.log(data);
+      getStatus()
     }
   })
 }
@@ -28,7 +28,7 @@ function drinkAjax() {
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/drink`,
     success: function(data){
-      console.log(data);
+      getStatus()
     }
   })
 }
@@ -38,7 +38,20 @@ function sleepAjax() {
     method: 'GET',
     url: `http://localhost:3000/api/users/${userid}/sleep`,
     success: function(data){
-      console.log(data);
+      getStatus()
+    }
+  })
+}
+function getStatus(){
+  let userid = localStorage.getItem('UserId')
+  $.ajax({
+    method: 'GET',
+    url: `http://localhost:3000/api/users/getstatus/${userid}`,
+    success: function(data){
+      $('#fatigue_status').val(data.fatigue)
+      $('#hunger_status').val(data.hunger)
+      $('#thirst_status').val(data.thirst)
+      $('#awesomeness_status').val(data.awesomeness)
     }
   })
 }
