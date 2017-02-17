@@ -1,12 +1,9 @@
-$('#name').keyup(function (e) {
+$('#name_submit').click(function (e) {
   e.preventDefault()
-  if (e.keyCode == 13) {
-    setStatus()
-  }
+  login()
 })
 
-function setStatus (e) {
-  e.preventDefault()
+function setStatus () {
   let nameVal = $('input[name=name]').val()
   $.ajax({
     type: 'POST',
@@ -32,17 +29,18 @@ function setStatus (e) {
   })
 }
 
-function login (e) {
-  e.preventDefault()
+function login () {
   $.ajax({
     type: 'POST',
     url: 'http://localhost:3000/api/users/login',
     data: {
-      name: $('input[name=name]').val()
+      name: $('#name').val()
     },
     success: function (resp) {
-      $('input[name=name]').val('')
+      $('#name').val()
+      console.log(resp._id)
       if (resp._id) {
+        console.log('OK')
         localStorage.setItem('UserId', resp._id)
         localStorage.setItem('Username', resp.name)
         window.location.href = 'http://localhost:8080/main.html'
@@ -52,23 +50,6 @@ function login (e) {
     },
     error: function () {
       console.log('POST Request Login Error')
-    }
-  })
-}
-
-function logout () {
-  $.ajax({
-    type: 'PUT',
-    url: 'http://localhost:3000/api/users/logout',
-    data: {
-      id: localStorage.getItem('UserId')
-    },
-    success: function () {
-      // localStorage.remove()
-      window.location.href = 'http://localhost:8080/index.html'
-    },
-    error: function () {
-      console.log('POST Request Logout Error')
     }
   })
 }

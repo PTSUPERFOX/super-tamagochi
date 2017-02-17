@@ -17,7 +17,7 @@ router.delete('/delete/:id', UsersController.remove)
 
 router.get('/:id/train', logic.training)
 
-router.put('/login', UsersController.login)
+router.post('/login', UsersController.login)
 
 router.put('/logout', UsersController.logout)
 

@@ -1,5 +1,4 @@
 var UsersModel = require('../models/UsersModel.js')
-const cron = require('node-cron')
 
 module.exports = {
   create: function (req, res) {
@@ -103,12 +102,13 @@ module.exports = {
         logout: Date.now()
       }
     }, { new: true }, function (err, data) {
-      if (err) throw error
+      if (err) throw err
       else res.json(data)
     })
   },
 
   login: function (req, res) {
+    console.log(req.body.name)
     UsersModel.findOne({
       name: req.body.name
     }, function (err, data) {
@@ -121,9 +121,10 @@ module.exports = {
 
       // prepare new status data to be updated on the user
       let newData = {
-        hunger: data.hunger - diffms,
-        thirst: data.thirst - diffms,
-        fatigue: data.thirst + diffms
+        hunger: data.hunger - (diffms * 2),
+        thirst: data.thirst - (diffms * 2),
+        fatigue: data.fatigue + (diffms * 2),
+        awesomeness: data.awesomeness - (diffms * 3)
       }
 
       // find specific user by name
@@ -133,7 +134,7 @@ module.exports = {
       }, {
         $set: newData
       }, {new: true}, function (err, data) {
-        if (err) throw error
+        if (err) throw err
         else res.json(data)
       })
     })

@@ -15,7 +15,9 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo paytone-one center">Super Tamagochi</a>
+    <button class="brand-logo paytone-one right btn" style="margin-top:12px;" onclick="logout()">Logout</button>
     </div>
+
   </nav>
 
   <div class="my-container">
@@ -35,19 +37,11 @@
         <!-- Name & Log BOX -->
         <div class="col s4">
           <div class="card-panel box-name">
-            <p style="display:inline-block;">Name: </p><h4 class="petname">John Doe</h4>
+            <p style="display:inline-block;">Name: </p><h4 class="petname" id="petname">John Doe</h4>
           </div>
           <div class="card-panel box-log">
             <div class="card-panel" style="overflow:scroll; height:295px; padding-top:0px;">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p></p>
             </div>
           </div>
         </div>
@@ -126,18 +120,15 @@
   <script src="js/main.js"></script>
 
   <script>
-  var stop = true;
+  var train = false;
 
   $('#training_button').click(function(e){
     e.preventDefault()
     let currentImage = $('.action-image').attr('id')
-    if(stop){
-      stop = false
-      console.log(stop);
+    if(train){
+      train = false
     } else {
-      stop = true
-      console.log(stop);
-      clearInterval(stop)
+      train = true
     }
     if(currentImage === 'training_image') {
       $('.action-image').attr('id', 'idle_image')
@@ -148,7 +139,12 @@
       $('#training_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/training_panda.gif" class="panda_image" width="200px;" alt="">')
 
       var stop = setInterval(function(){
-        trainingAjax()
+        if(!train){
+          clearInterval(stop)
+        } else {
+          console.log('ok');
+          trainingAjax()
+        }
       }, 2000);
 
     }
@@ -164,7 +160,7 @@
     // After 5s enable eat button
     setTimeout(function(){
       $('#eat_button').prop('disabled', false)
-    }, 2000);
+    }, 3000);
 
     $('.action-image').attr('id', 'eat_image')
     $('#eat_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/eat_panda.gif-c200" class="panda_image" width="200px;" alt="">')
@@ -172,7 +168,7 @@
     setTimeout(function(){
       $('.action-image').attr('id', 'idle_image')
       $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
-    }, 2000);
+    }, 3000);
     eatAjax()
   })
 
@@ -224,7 +220,7 @@
     setTimeout(function(){
       $('.action-image').attr('id', 'idle_image')
       $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
-    }, 2000);
+    }, 3000);
   }
 
   </script>

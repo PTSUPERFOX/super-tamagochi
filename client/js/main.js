@@ -1,5 +1,7 @@
 $(document).ready(function () {
   getStatus()
+  let nama = localStorage.getItem('Username')
+  $('#petname').html(nama)
 })
 
 function trainingAjax () {
@@ -52,6 +54,23 @@ function getStatus () {
       $('#hunger_status').val(data.hunger)
       $('#thirst_status').val(data.thirst)
       $('#awesomeness_status').val(data.awesomeness)
+    }
+  })
+}
+
+function logout () {
+  $.ajax({
+    type: 'PUT',
+    url: 'http://localhost:3000/api/users/logout',
+    data: {
+      id: localStorage.getItem('UserId')
+    },
+    success: function () {
+      localStorage.clear()
+      window.location.href = 'http://localhost:8080/index.html'
+    },
+    error: function () {
+      console.log('POST Request Logout Error')
     }
   })
 }
