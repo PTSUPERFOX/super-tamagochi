@@ -21,6 +21,7 @@
   "homepage": "https://github.com/PTSUPERFOX/super-tamagochi#readme",
   "dependencies": {
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "nightmare": "^2.9.1"
   }
 }

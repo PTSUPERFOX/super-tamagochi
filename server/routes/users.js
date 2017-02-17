@@ -1,9 +1,26 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
+var UsersController = require('../controllers/UsersController.js')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// ======= /api/users =====
+router.get('/getstatus', function (req, res, next) {
+  res.send({status: 'ok'})
+})
 
-module.exports = router;
+router.get('/train', function (req, res, next) {
+  res.send({status: 'ok'})
+})
+
+router.get('/eat', function (req, res, next) {
+  res.send({status: 'ok'})
+})
+
+router.get('/sleep', function (req, res, next) {
+  res.send({status: 'ok'})
+})
+
+router.get('/drink', function (req, res, next) {
+  res.send({status: 'ok'})
+})
+
+module.exports = router
