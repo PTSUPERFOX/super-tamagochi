@@ -6,6 +6,8 @@ var UsersController = require('../controllers/UsersController.js')
 
 router.get('/getstatus', UsersController.list)
 
+router.get('/getstatus/:id', UsersController.show)
+
 router.post('/register', UsersController.create)
 
 router.put('/update/:id', UsersController.update)

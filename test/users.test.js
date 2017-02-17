@@ -48,6 +48,19 @@ describe('API status and response', function () {
     })
   })
 
+  describe('api/users/getstatus/:id', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .get(`/api/users/getstatus/${createdId}`)
+        .end(function (err, res) {
+          res.body.name.should.equal('Syanmil')
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
   describe('api/users/getstatus', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
