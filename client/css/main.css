@@ -28,8 +28,9 @@ body {
   height: 360px;
 }
 
-.box-action{
-  height: 200px;
+.center-icon {
+  display: flex;
+  justify-content: center;
 }
 
 /*.box-avatar{
