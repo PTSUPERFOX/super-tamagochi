@@ -7,7 +7,7 @@ describe('Check App logic', function(){
     expect(logic).to.be.a('object')
   })
   it('expect to get number from train', function(){
-    expect(logic.train()).to.be.a('number')
+    expect(logic.train().awesomeness).to.be.a('number')
   })
   it('expect logic.train to have hunger fatigue thirst awesomeness property', function(){
     expect(logic.train()).to.have.property('hunger');
@@ -16,14 +16,14 @@ describe('Check App logic', function(){
     expect(logic.train()).to.have.property('awesomeness');
   })
   it('expect to get number from eat', function(){
-    expect(logic.eat()).to.be.a('number')
+    expect(logic.eat().hunger).to.be.a('number')
   })
   it('expect logic.eat to have hunger thirst property', function(){
     expect(logic.eat()).to.have.property('hunger');
     expect(logic.eat()).to.have.property('thirst');
   })
   it('expect to get number from sleep', function(){
-    expect(logic.sleep()).to.be.a('number')
+    expect(logic.sleep().fatigue).to.be.a('number')
   })
   it('expect logic.sleep to have hunger thirst fatigue property', function(){
     expect(logic.sleep()).to.have.property('hunger');
@@ -31,13 +31,13 @@ describe('Check App logic', function(){
     expect(logic.sleep()).to.have.property('fatigue');
   })
   it('expect to get number from drink', function(){
-    expect(logic.drink()).to.be.a('number')
+    expect(logic.drink().thirst).to.be.a('number')
   })
   it('expect logic.drink to have thirst property', function(){
     expect(logic.drink()).to.have.property('thirst');
   })
   it('expect to get number from rest', function(){
-    expect(logic.rest()).to.be.a('number')
+    expect(logic.rest().fatigue).to.be.a('number')
   })
   it('expect logic.rest to have thirst property', function(){
     expect(logic.rest()).to.have.property('fatigue');
