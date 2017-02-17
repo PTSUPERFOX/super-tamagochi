@@ -43,3 +43,9 @@ describe('Check App logic', function(){
     expect(logic.rest()).to.have.property('fatigue');
   })
 })
+
+describe('Check App logic modify database', function(){
+  it('expect training to change database', function(){
+    expect(logic.training()).to.be.a('function')
+  })
+})
