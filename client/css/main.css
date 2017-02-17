@@ -1,0 +1,5 @@
+body {
+  height: 100vh;
+  background: url('../asset/img/background_login1.jpg') no-repeat center;
+  background-size: cover;
+}
