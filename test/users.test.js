@@ -6,64 +6,102 @@ chai.use(chaiHTTP)
 
 // ======= chai should test for /api/users =====
 
+function success (status) {
+  let isSuccess = status >= 200 && status < 300 || status === 304
+  if (isSuccess) return status
+  else return '500 or 404'
+}
+
 describe('API status and response', function () {
+  let createdId
+  describe('api/users/register', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .post('/api/users/register')
+        .send({
+          name: 'Syanmil',
+          hunger: 100,
+          thirst: 100,
+          fatigue: 100,
+          awesomeness: 0
+        })
+        .end(function (err, res) {
+          createdId = res.body._id
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
+          done()
+        })
+    })
+  })
+
   describe('api/users/getstatus', function () {
-    it('should return status 200 and an object', function (done) {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .get('/api/users/getstatus')
         .end(function (err, res) {
-          res.should.have.status(200)
-          res.body.should.be.an('object')
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('array')
           done()
         })
     })
   })
 
-  describe('api/users/train', function () {
-    it('should return status 200 and an object', function (done) {
+  describe('api/users/delete/:id', function () {
+    it('should return 200 <= status < 300 || status === 304', function (done) {
       chai.request(url)
-        .get('/api/users/train')
+        .delete(`/api/users/delete/${createdId}`)
         .end(function (err, res) {
-          res.should.have.status(200)
-          res.body.should.be.an('object')
+          res.should.have.status(success(res.status))
           done()
         })
     })
   })
 
-  describe('api/users/eat', function () {
-    it('should return status 200 and an object', function (done) {
-      chai.request(url)
-        .get('/api/users/eat')
-        .end(function (err, res) {
-          res.should.have.status(200)
-          res.body.should.be.an('object')
-          done()
-        })
-    })
-  })
-
-  describe('api/users/sleep', function () {
-    it('should return status 200 and an object', function (done) {
-      chai.request(url)
-        .get('/api/users/sleep')
-        .end(function (err, res) {
-          res.should.have.status(200)
-          res.body.should.be.an('object')
-          done()
-        })
-    })
-  })
-
-  describe('api/users/drink', function () {
-    it('should return status 200 and an object', function (done) {
-      chai.request(url)
-        .get('/api/users/drink')
-        .end(function (err, res) {
-          res.should.have.status(200)
-          res.body.should.be.an('object')
-          done()
-        })
-    })
-  })
+// describe('api/users/train', function () {
+//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+//     chai.request(url)
+//       .get('/api/users/train')
+//       .end(function (err, res) {
+//         res.should.have.status(success(res.status))
+//         res.body.should.be.an('object')
+//         done()
+//       })
+//   })
+// })
+//
+// describe('api/users/eat', function () {
+//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+//     chai.request(url)
+//       .get('/api/users/eat')
+//       .end(function (err, res) {
+//         res.should.have.status(success(res.status))
+//         res.body.should.be.an('object')
+//         done()
+//       })
+//   })
+// })
+//
+// describe('api/users/sleep', function () {
+//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+//     chai.request(url)
+//       .get('/api/users/sleep')
+//       .end(function (err, res) {
+//         res.should.have.status(success(res.status))
+//         res.body.should.be.an('object')
+//         done()
+//       })
+//   })
+// })
+//
+// describe('api/users/drink', function () {
+//   it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+//     chai.request(url)
+//       .get('/api/users/drink')
+//       .end(function (err, res) {
+//         res.should.have.status(success(res.status))
+//         res.body.should.be.an('object')
+//         done()
+//       })
+//   })
+// })
 })
