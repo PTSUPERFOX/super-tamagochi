@@ -69,6 +69,12 @@ h4 {
   top: 150%;
 }
 
+.panda_image_drink {
+  position: absolute;
+  left: 13%;
+  top: 150%;
+}
+
 .relative {
   position: relative;
 }

@@ -25,12 +25,9 @@
         <!-- Avatar BOX -->
         <div class="col s4">
           <div class="card-panel box-avatar" style="padding:2px;">
-            <div class="title-box light-blue lighten-2 relative">
+            <div class="title-box light-blue lighten-2 relative action-image">
               <h4 class="title">Avatar</h4>
-              <!-- <img src="asset/gif/eat_panda.gif-c200" class="panda_image" width="200px;" alt=""> -->
-              <img src="asset/gif/sleep_panda.jpg" class="panda_image" width="200px;" alt="">
-              <!-- <img src="asset/gif/training_panda.gif" class="panda_image" width="200px;" alt=""> -->
-              <!-- <img src="asset/gif/sleep_panda.jpg" class="panda_image" width="200px;" alt=""> -->
+              <img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">
             </div>
           </div>
         </div>
@@ -60,7 +57,10 @@
           <div class="card-panel box-status" style="padding:2px;">
             <div class="title-box light-blue lighten-2">
               <h4 class="title">Status</h4>
+
             </div>
+
+            <progress value="100" max="100">0%</progress>
           </div>
         </div>
 
@@ -69,16 +69,16 @@
           <div class="card-panel box-action">
             <div class="card-panel" style="display:flex; align-items:center;">
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light blue lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/training.png" alt="" width="65px;" /></button>
+                <button id="training_button" class="btn-large waves-effect waves-light blue lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/training.png" alt="" width="65px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light teal lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/eat.png" alt="" width="80px;" /></button>
+                <button id="eat_button" class="btn-large waves-effect waves-light teal lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/eat.png" alt="" width="80px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light green lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/sleep.png" alt="" width="100px;" /></button>
+                <button id="sleep_button" class="btn-large waves-effect waves-light green lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/sleep.png" alt="" width="100px;" /></button>
               </div>
               <div class="col s3 center-icon">
-                <button class="btn-large waves-effect waves-light deep-orange lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/drink.png" alt="" width="85px;" /></button>
+                <button id="drink_button" class="btn-large waves-effect waves-light deep-orange lighten-1" style="width:150px; height:150px; border-radius:20px;"><img src="asset/img/drink.png" alt="" width="85px;" /></button>
               </div>
             </div>
           </div>
@@ -93,7 +93,88 @@
   <script src="js/materialize.js"></script>
 
   <script>
-    // Input your AJAX here! on success redirect to main.html and set the pet name
+  $('#training_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+
+    if(currentImage === 'training_image') {
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    } else {
+      $('.action-image').attr('id', 'training_image')
+      $('#training_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/training_panda.gif" class="panda_image" width="200px;" alt="">')
+    }
+  })
+
+  $('#eat_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+
+    // disable eat button
+    $('#eat_button').attr('disabled', true)
+
+    // After 20s enable eat button
+    setTimeout(function(){
+      $('#eat_button').prop('disabled', false)
+    }, 20000);
+
+    $('.action-image').attr('id', 'eat_image')
+    $('#eat_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/eat_panda.gif-c200" class="panda_image" width="200px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 2000);
+  })
+
+  $('#sleep_button').click(function(e){
+    e.preventDefault()
+    let currentImage = $('.action-image').attr('id')
+
+    // disable sleep button
+    $('#sleep_button').attr('disabled', true)
+
+    // After 30s enable sleep button
+    setTimeout(function(){
+      $('#sleep_button').prop('disabled', false)
+    }, 30000);
+
+    $('.action-image').attr('id', 'sleep_image')
+    $('#sleep_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/sleep_panda.jpg" class="panda_image" width="200px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 2000);
+  })
+
+  $('#drink_button').click(function(e){
+    e.preventDefault()
+    buttonStatus()
+    drinkImage()
+  })
+
+  function drinkStatus() {
+
+    // disable drink button
+    $(`#drink_button`).attr('disabled', true)
+
+    // After 10s enable drink button
+    setTimeout(function(){
+      $(`#drink_button`).prop('disabled', false)
+    }, 10000);
+  }
+
+  function drinkImage() {
+    $('.action-image').attr('id', 'drink_image')
+    $('#drink_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/drink_panda.jpeg" class="panda_image_drink" width="300px;" alt="">')
+
+    setTimeout(function(){
+      $('.action-image').attr('id', 'idle_image')
+      $('#idle_image').html('<h4 class="title">Avatar</h4><img src="asset/gif/idle_panda.gif" class="panda_image" width="200px;" alt="">')
+    }, 2000);
+  }
+
   </script>
 
   </body>
