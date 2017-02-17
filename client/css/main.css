@@ -36,21 +36,27 @@ body {
 
 
 .title-box {
-  height: 75px;
+  height: 60px;
   display: flex;
   align-items: center;
 }
 
 .title {
   margin-left: 20px;
+  font-family: "fredoka one";
 }
 
 .overflow {
   overflow: auto;
 }
 
-h3 {
+h3, h4 {
   margin: 0px;
+}
+
+h4 {
+  margin-left: 20px;
+  display: inline-block;
 }
 
 .box-name p {
@@ -65,4 +71,12 @@ h3 {
 
 .relative {
   position: relative;
+}
+
+.paytone-one {
+  font-family: "Paytone one"
+}
+
+.petname {
+  font-family: "luckiest guy";
 }
