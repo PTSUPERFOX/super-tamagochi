@@ -32,28 +32,3 @@ body {
   display: flex;
   justify-content: center;
 }
-
-/*.box-avatar{
-  position: absolute;
-  height: 55%;
-  width: 25%;
-}
-
-.box-name{
-  position: absolute;
-  height: 10%;
-  width: 25%;
-}
-
-.box-status{
-  position: absolute;
-  height: 55%;
-  width: 25%;
-}
-
-.box-log{
-  position: absolute;
-  height: 35%;
-  width: 25%;
-  left: 40%;
-}*/
