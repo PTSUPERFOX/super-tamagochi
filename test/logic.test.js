@@ -52,7 +52,7 @@ describe('Check App logic modify database', function(){
   it('expect training to be a function', function(){
     expect(logic.training).to.be.a('function')
   })
-  it('expect training to be a change all status', function(done){
+  it('expect training to be change all status', function(done){
     chai.request(url)
     .get(`/api/users/${userid}/train`)
     .end(function (err, res) {
@@ -60,6 +60,33 @@ describe('Check App logic modify database', function(){
       expect(res.body.awesomeness).to.be.equal(2)
       expect(res.body.thirst).to.be.equal(98)
       expect(res.body.fatigue).to.be.equal(98)
+      done()
+    })
+  })
+  it('expect eating to fill full', function(done){
+    chai.request(url)
+    .get(`/api/users/${userid}/eat`)
+    .end(function (err, res) {
+      expect(res.body.hunger).to.be.equal(100)
+      expect(res.body.thirst).to.be.equal(99)
+      done()
+    })
+  })
+  it('expect drinking to be change fill thirst', function(done){
+    chai.request(url)
+    .get(`/api/users/${userid}/drink`)
+    .end(function (err, res) {
+      expect(res.body.thirst).to.be.equal(100)
+      done()
+    })
+  })
+  it('expect sleeping to relive fatigue', function(done){
+    chai.request(url)
+    .get(`/api/users/${userid}/sleep`)
+    .end(function (err, res) {
+      expect(res.body.hunger).to.be.equal(90)
+      expect(res.body.thirst).to.be.equal(90)
+      expect(res.body.fatigue).to.be.equal(100)
       done()
     })
   })
