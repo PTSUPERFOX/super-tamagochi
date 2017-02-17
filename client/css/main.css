@@ -86,3 +86,12 @@ h4 {
 .petname {
   font-family: "luckiest guy";
 }
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 120%;
+  height: 25px;
+}
