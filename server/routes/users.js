@@ -3,22 +3,27 @@ var router = express.Router()
 var UsersController = require('../controllers/UsersController.js')
 
 // ======= /api/users =====
-router.get('/getstatus', UsersController.create)
 
-router.get('/train', function (req, res, next) {
-  res.send({status: 'ok'})
-})
+router.get('/getstatus', UsersController.list)
 
-router.get('/eat', function (req, res, next) {
-  res.send({status: 'ok'})
-})
+router.post('/register', UsersController.create)
 
-router.get('/sleep', function (req, res, next) {
-  res.send({status: 'ok'})
-})
+router.delete('/delete/:id', UsersController.remove)
 
-router.get('/drink', function (req, res, next) {
-  res.send({status: 'ok'})
-})
+// router.put('/train', function (req, res, next) {
+//   res.send({status: 'ok'})
+// })
+//
+// router.put('/eat', function (req, res, next) {
+//   res.send({status: 'ok'})
+// })
+//
+// router.put('/sleep', function (req, res, next) {
+//   res.send({status: 'ok'})
+// })
+//
+// router.put('/drink', function (req, res, next) {
+//   res.send({status: 'ok'})
+// })
 
 module.exports = router
