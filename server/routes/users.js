@@ -8,6 +8,8 @@ router.get('/getstatus', UsersController.list)
 
 router.post('/register', UsersController.create)
 
+router.put('/update/:id', UsersController.update)
+
 router.delete('/delete/:id', UsersController.remove)
 
 // router.put('/train', function (req, res, next) {

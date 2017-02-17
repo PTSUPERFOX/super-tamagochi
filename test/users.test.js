@@ -27,6 +27,7 @@ describe('API status and response', function () {
         })
         .end(function (err, res) {
           createdId = res.body._id
+          res.body.name.should.equal('Syanmil')
           res.should.have.status(success(res.status))
           res.body.should.be.an('object')
           done()
@@ -39,8 +40,28 @@ describe('API status and response', function () {
       chai.request(url)
         .get('/api/users/getstatus')
         .end(function (err, res) {
+          res.body[0].name.should.equal('Syanmil')
           res.should.have.status(success(res.status))
           res.body.should.be.an('array')
+          done()
+        })
+    })
+  })
+
+  describe('api/users/getstatus', function () {
+    it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
+      chai.request(url)
+        .put(`/api/users/update/${createdId}`)
+        .send({
+          hunger: 90,
+          thirst: 90,
+          fatigue: 90,
+          awesomeness: 10
+        })
+        .end(function (err, res) {
+          res.body.hunger.should.equal(90)
+          res.should.have.status(success(res.status))
+          res.body.should.be.an('object')
           done()
         })
     })
