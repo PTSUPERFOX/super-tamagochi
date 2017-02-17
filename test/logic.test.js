@@ -1,6 +1,9 @@
 const chai = require('chai');
 const expect = require('chai').expect
 const logic = require('../server/controllers/logic')
+const chaiHTTP = require('chai-http')
+const url = 'http://localhost:3000'
+chai.use(chaiHTTP)
 
 describe('Check App logic', function(){
   it('expect to return object when connected', function(){
@@ -43,9 +46,21 @@ describe('Check App logic', function(){
     expect(logic.rest()).to.have.property('fatigue');
   })
 })
+let userid = '58a6a370e86a213f2180c2be'
 
 describe('Check App logic modify database', function(){
-  it('expect training to change database', function(){
-    expect(logic.training()).to.be.a('function')
+  it('expect training to be a function', function(){
+    expect(logic.training).to.be.a('function')
+  })
+  it('expect training to be a change all status', function(done){
+    chai.request(url)
+    .get(`/api/users/${userid}/train`)
+    .end(function (err, res) {
+      expect(res.body.hunger).to.be.equal(98)
+      expect(res.body.awesomeness).to.be.equal(2)
+      expect(res.body.thirst).to.be.equal(98)
+      expect(res.body.fatigue).to.be.equal(98)
+      done()
+    })
   })
 })

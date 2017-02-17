@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var UsersController = require('../controllers/UsersController.js')
+var logic = require('../controllers/logic.js')
 
 // ======= /api/users =====
 
@@ -29,5 +30,7 @@ router.put('/sleep', function (req, res, next) {
 router.put('/drink', function (req, res, next) {
   res.send({status: 'ok'})
 })
+
+router.get('/:id/train', logic.training)
 
 module.exports = router
