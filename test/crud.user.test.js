@@ -61,7 +61,7 @@ describe('API status and response', function () {
     })
   })
 
-  describe('PUT api/users/update', function () {
+  describe('PUT api/users/update/:id', function () {
     it('should return 200 <= status < 300 || status === 304 and an object', function (done) {
       chai.request(url)
         .put(`/api/users/update/${createdId}`)

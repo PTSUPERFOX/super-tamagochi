@@ -108,7 +108,6 @@ module.exports = {
   },
 
   login: function (req, res) {
-    console.log(req.body.name)
     UsersModel.findOne({
       name: req.body.name
     }, function (err, data) {
